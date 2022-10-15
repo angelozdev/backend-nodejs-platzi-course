@@ -1,6 +1,7 @@
 import { IProduct, IProductToCreate, TParams } from '../../typings/product'
 import boom from '@hapi/boom'
 import { generateProduct, sleep } from './utils'
+import sql from '../../db'
 
 const fakeProducts: Map<string, IProduct> = new Map(
   [
@@ -95,9 +96,12 @@ export async function getOne(id: string): Promise<IProduct | null> {
 }
 
 export async function getAll(params: TParams): Promise<IProduct[]> {
-  await sleep(100)
-  const { offset = 0, limit = 10 } = params
-  return Array.from(fakeProducts.values()).slice(offset, offset + limit)
+  const { limit = 10, offset = 0 } = params
+  const products = await sql<IProduct[]>`
+    SELECT * FROM "products" LIMIT ${limit} OFFSET ${offset}
+  `
+
+  return products
 }
 
 export async function createOne(product: IProductToCreate): Promise<IProduct> {

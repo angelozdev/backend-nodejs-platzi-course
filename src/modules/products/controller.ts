@@ -14,18 +14,27 @@ export const getProducts: RequestHandler<any, any, any, TParams> = async (
   next
 ) => {
   try {
-    const { limit, offset } = req.query
-    if (Number(limit) > 50) throw boom.badData('Limit must be less than 50')
+    const { limit: _limit = 10, offset: _offset = 0 } = req.query
+    const limit = Number(_limit) || 10
+    const offset = Number(_offset) || 0
+
+    if (limit > 50) throw boom.badData('Limit must be less than 50')
+    if (offset < 0) throw boom.badData('Offset must be greater than 0')
+    if (limit < 0) throw boom.badData('Limit must be greater than 0')
+
     const products = await productServices.getAll({
-      limit: Number(limit) || 10,
-      offset: Number(offset) || 0
+      limit,
+      offset: offset * limit
     })
 
     const response: IResponse<IProduct> = {
       count: products.length,
       data: products,
-      next: null,
-      previous: null
+      next:
+        products.length === limit
+          ? `/?limit=${limit}&offset=${offset + limit}`
+          : null,
+      previous: offset > 0 ? `/?limit=${limit}&offset=${offset - limit}` : null
     }
 
     res.json(response).status(200)

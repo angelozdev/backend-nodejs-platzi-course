@@ -11,6 +11,7 @@ specifiers:
   '@typescript-eslint/parser': ^5.40.0
   axios: ^1.1.2
   cors: ^2.8.5
+  dotenv: ^16.0.3
   eslint: ^8.0.1
   eslint-config-standard-with-typescript: ^23.0.0
   eslint-plugin-import: ^2.25.2
@@ -20,6 +21,7 @@ specifiers:
   helmet: ^6.0.0
   morgan: ^1.10.0
   nodemon: ^2.0.20
+  postgres: ^3.3.1
   prettier: ^2.7.1
   superstruct: ^0.16.5
   ts-node: ^10.9.1
@@ -29,9 +31,11 @@ dependencies:
   '@hapi/boom': 10.0.0
   axios: 1.1.2
   cors: 2.8.5
+  dotenv: 16.0.3
   express: 4.18.2
   helmet: 6.0.0
   morgan: 1.10.0
+  postgres: 3.3.1
   superstruct: 0.16.5
   ts-node: 10.9.1_ptpocrdt7oaz4ni5mlvucph5pa
 
@@ -730,6 +734,11 @@ packages:
     dependencies:
       esutils: 2.0.3
     dev: true
+
+  /dotenv/16.0.3:
+    resolution: {integrity: sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==}
+    engines: {node: '>=12'}
+    dev: false
 
   /ee-first/1.1.1:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
@@ -1823,6 +1832,10 @@ packages:
     resolution: {integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==}
     engines: {node: '>=8.6'}
     dev: true
+
+  /postgres/3.3.1:
+    resolution: {integrity: sha512-ak/xXToZYwRvQlZIUtLgPUIggz62eIIbPTgxl/Yl4oTu0TgNOd1CrzTCifsvZ89jBwLvnX6+Ky5frp5HzIBoaw==}
+    dev: false
 
   /prelude-ls/1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}

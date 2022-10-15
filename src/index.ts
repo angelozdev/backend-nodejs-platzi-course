@@ -2,6 +2,7 @@ import express from 'express'
 import morgan from 'morgan'
 import helmet from 'helmet'
 import cors from 'cors'
+
 import { errorsHandler } from './middlewares/errors-handler'
 import { productsRouter } from './modules/products'
 import app from './server'

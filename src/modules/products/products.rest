@@ -2,7 +2,7 @@
 GET http://localhost:3000/api/v1/products
 
 ### Get a single product with limit and offset
-GET http://localhost:3000/api/v1/products?limit=20&offset=8
+GET http://localhost:3000/api/v1/products?limit=3&offset=3
 
 ### Get a single product from the database
 GET http://localhost:3000/api/v1/products/1ddb4d3c-4ae6-45fb-bcfb-37ca9f229d2d
