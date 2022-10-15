@@ -1,6 +1,7 @@
 import express from 'express'
 import morgan from 'morgan'
 import helmet from 'helmet'
+import cors from 'cors'
 import { errorsHandler } from './middlewares/errors-handler'
 import { productsRouter } from './modules/products'
 import app from './server'
@@ -11,6 +12,7 @@ const PORT = process.env.PORT || 3000
 app.use(morgan('dev'))
 app.use(express.json())
 app.use(helmet())
+app.use(cors({ origin: '*' }))
 
 // routes
 app.get('/', (req, res) => res.send('Hello World'))
