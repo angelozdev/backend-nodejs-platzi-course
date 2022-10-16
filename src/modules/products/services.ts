@@ -17,7 +17,8 @@ export async function getAll(params: TParams): Promise<Product[]> {
   const { limit = 10, offset = 0 } = params
   const products = await prisma.product.findMany({
     take: limit,
-    skip: offset
+    skip: offset,
+    orderBy: { id: 'desc' }
   })
 
   return products
