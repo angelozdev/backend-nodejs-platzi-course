@@ -5,7 +5,7 @@ GET http://localhost:3000/api/v1/products
 GET http://localhost:3000/api/v1/products?limit=3&offset=3
 
 ### Get a single product from the database
-GET http://localhost:3000/api/v1/products/1ddb4d3c-4ae6-45fb-bcfb-37ca9f229d2d
+GET http://localhost:3000/api/v1/products/1
 
 ### Create a new product
 POST http://localhost:3000/api/v1/products
@@ -14,18 +14,18 @@ Content-Type: application/json
 {
   "name": "Product 1",
   "description": "Product 1 description",
-  "price": 12.99,
+  "price": 12,
   "image": "https://example.com/image.jpg"
 }
 
 ### Update a product
-PATCH http://localhost:3000/api/v1/products/1ddb4d3c-4ae6-45fb-bcfb-37ca9f229d2d
+PATCH http://localhost:3000/api/v1/products/12
 Content-Type: application/json
 
 {
-  "name": "Product 1 updated",
+  "name": "Product 1 updated :D",
   "description": "Product 1 modified"
 }
 
 ### Delete a product
-DELETE http://localhost:3000/api/v1/products/1ddb4d3c-4ae6-45fb-bcfb-37ca9f229d2d
+DELETE http://localhost:3000/api/v1/products/1

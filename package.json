@@ -7,19 +7,20 @@
     "dev": "nodemon ./src/index.ts",
     "start": "node dist/index.js",
     "build": "npm run clean && tsc",
-    "clean": "rm -rf dist"
+    "clean": "rimraf dist",
+    "prisma:generate": "prisma generate"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
     "@hapi/boom": "^10.0.0",
+    "@prisma/client": "4.4.0",
     "axios": "^1.1.2",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "helmet": "^6.0.0",
     "morgan": "^1.10.0",
-    "postgres": "^3.3.1",
     "superstruct": "^0.16.5",
     "ts-node": "^10.9.1"
   },
@@ -38,6 +39,8 @@
     "eslint-plugin-promise": "^6.0.0",
     "nodemon": "^2.0.20",
     "prettier": "^2.7.1",
+    "prisma": "^4.4.0",
+    "rimraf": "^3.0.2",
     "typescript": "4.8.4"
   }
 }

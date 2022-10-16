@@ -1,12 +1,8 @@
 import { type RequestHandler } from 'express'
 import boom from '@hapi/boom'
-import {
-  IProduct,
-  IProductToCreate,
-  IResponse,
-  TParams
-} from '../../typings/product'
+import { IResponse, TParams } from '../../typings/product'
 import productServices from './services'
+import { Product } from '@prisma/client'
 
 export const getProducts: RequestHandler<any, any, any, TParams> = async (
   req,
@@ -24,10 +20,10 @@ export const getProducts: RequestHandler<any, any, any, TParams> = async (
 
     const products = await productServices.getAll({
       limit,
-      offset: offset * limit
+      offset
     })
 
-    const response: IResponse<IProduct> = {
+    const response: IResponse<Product> = {
       count: products.length,
       data: products,
       next:
@@ -46,7 +42,7 @@ export const getProducts: RequestHandler<any, any, any, TParams> = async (
 export const getProduct: RequestHandler = async (req, res, next) => {
   try {
     const { id } = req.params
-    const product = await productServices.getOne(id)
+    const product = await productServices.getOne(+id)
     if (!product) throw boom.notFound(`Product with id ${id} not found`)
     res.json(product).status(200)
   } catch (error) {
@@ -54,21 +50,22 @@ export const getProduct: RequestHandler = async (req, res, next) => {
   }
 }
 
-export const createProduct: RequestHandler<any, any, IProductToCreate> = async (
-  req,
-  res,
-  next
-) => {
+export const createProduct: RequestHandler<
+  any,
+  any,
+  Omit<Product, 'id'>
+> = async (req, res, next) => {
   try {
     const { name, description, price, image } = req.body
-    const productData = {
+    const createdProduct = await productServices.createOne({
       name,
       description,
       price,
-      image
-    }
+      image,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    })
 
-    const createdProduct = await productServices.createOne(productData)
     res.status(201).json(createdProduct)
   } catch (error) {
     next(error)
@@ -78,21 +75,20 @@ export const createProduct: RequestHandler<any, any, IProductToCreate> = async (
 export const updateProduct: RequestHandler<
   { id: string },
   any,
-  Partial<IProductToCreate>
+  Partial<Product>
 > = async (req, res, next) => {
   const { id } = req.params
   const { name, description, price, image } = req.body
 
   try {
-    const product = await productServices.getOne(id)
+    const product = await productServices.getOne(+id)
     if (!product) throw boom.notFound(`Product with id ${id} not found`)
-    const productData = {
-      name: name || product.name,
-      description: description || product.description,
-      price: price || product.price,
-      image: image || product.image
-    }
-    const updatedProduct = await productServices.updateOne(id, productData)
+    const updatedProduct = await productServices.updateOne(+id, {
+      name,
+      description,
+      price,
+      image
+    })
     res.status(200).json(updatedProduct)
   } catch (error) {
     next(error)
@@ -106,8 +102,8 @@ export const deleteProduct: RequestHandler<{ id: string }> = async (
 ) => {
   try {
     const { id } = req.params
-    await productServices.deleteOne(id)
-    res.status(204).json()
+    const deletedProduct = await productServices.deleteOne(+id)
+    res.status(204).json(deletedProduct)
   } catch (error) {
     next(error)
   }
