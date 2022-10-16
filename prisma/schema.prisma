@@ -12,9 +12,9 @@ datasource db {
 
 model Product {
   id          Int      @id @default(autoincrement())
-  name        String
-  price       Int
-  description String?
+  name        String   @db.VarChar(255)
+  price       Float
+  description String?  @db.Text
   image       String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt

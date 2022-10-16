@@ -2,7 +2,7 @@ import { type RequestHandler } from 'express'
 import boom from '@hapi/boom'
 import { IResponse, TParams } from '../../typings/product'
 import productServices from './services'
-import { Product } from '@prisma/client'
+import { type Product } from '@prisma/client'
 
 export const getProducts: RequestHandler<any, any, any, TParams> = async (
   req,
@@ -60,7 +60,7 @@ export const createProduct: RequestHandler<
     const createdProduct = await productServices.createOne({
       name,
       description,
-      price,
+      price: +price,
       image,
       createdAt: new Date(),
       updatedAt: new Date()

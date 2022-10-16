@@ -2,10 +2,10 @@
 GET http://localhost:3000/api/v1/products
 
 ### Get a single product with limit and offset
-GET http://localhost:3000/api/v1/products?limit=3&offset=3
+GET http://localhost:3000/api/v1/products?limit=5&offset=10
 
 ### Get a single product from the database
-GET http://localhost:3000/api/v1/products/1
+GET http://localhost:3000/api/v1/products/10
 
 ### Create a new product
 POST http://localhost:3000/api/v1/products
@@ -14,7 +14,7 @@ Content-Type: application/json
 {
   "name": "Product 1",
   "description": "Product 1 description",
-  "price": 12,
+  "price": "12.4",
   "image": "https://example.com/image.jpg"
 }
 
@@ -28,4 +28,4 @@ Content-Type: application/json
 }
 
 ### Delete a product
-DELETE http://localhost:3000/api/v1/products/1
+DELETE http://localhost:3000/api/v1/products/12

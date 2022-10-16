@@ -6,8 +6,12 @@ import {
   updateProduct,
   deleteProduct
 } from './controller'
-import { validateSchema } from './middlewares'
-import { CreateProductSchema, IdSchema, UpdateProductShema } from './validators'
+import { validateSchema } from '../../middlewares'
+import {
+  CreateProductSchema,
+  IdSchema,
+  UpdateProductShema
+} from './utils/validators'
 
 const router = express.Router()
 

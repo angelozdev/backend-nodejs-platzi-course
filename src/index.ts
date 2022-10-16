@@ -3,11 +3,10 @@ import morgan from 'morgan'
 import helmet from 'helmet'
 import cors from 'cors'
 
-import { errorsHandler } from './middlewares/errors-handler'
+import { errorHandler } from './middlewares'
 import { productsRouter } from './modules/products'
 import app from './server'
-
-const PORT = process.env.PORT || 3000
+import EV from './constants/ev'
 
 // global middlewares
 app.use(morgan('dev'))
@@ -20,8 +19,8 @@ app.get('/', (req, res) => res.send('Hello World'))
 app.use('/api/v1/products', productsRouter)
 
 // error handler
-app.use(errorsHandler)
+app.use(errorHandler)
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`)
+app.listen(EV.PORT, () => {
+  console.log(`Server is running on http://localhost:${EV.PORT}`)
 })
