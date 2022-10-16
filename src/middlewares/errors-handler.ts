@@ -2,6 +2,7 @@ import { ErrorRequestHandler } from 'express'
 import boom from '@hapi/boom'
 
 const errorsHandler: ErrorRequestHandler = (err, req, res, next) => {
+  console.error(err)
   if (boom.isBoom(err)) {
     const { output } = err
     res.status(output.statusCode).json(output.payload)

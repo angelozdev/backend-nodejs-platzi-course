@@ -1,0 +1,20 @@
+### GET a user by id
+GET http://localhost:3000/api/v1/users/2
+
+### POST a new user
+POST http://localhost:3000/api/v1/users
+Content-Type: application/json
+
+{
+  "email": "josshn@email.com",
+  "password": "password"
+}
+
+### UPDATE an user
+PATCH http://localhost:3000/api/v1/users/2
+Content-Type: application/json
+
+{
+  "name": "Joshua",
+  "currentPassword": "Admin.1234"
+}

@@ -1,6 +1,6 @@
 import Joi from 'joi'
+import { id } from '../../../utils/commom-validators'
 
-const id = Joi.number().integer().positive().required()
 const name = Joi.string().min(3).max(30).required()
 const description = Joi.string().min(3).max(200)
 const price = Joi.number().positive().required()
@@ -26,8 +26,4 @@ export const UpdateProductShema = Joi.object({
   description: description.optional(),
   price: price.optional(),
   image: image.optional()
-})
-
-export const IdSchema = Joi.object({
-  id
 })

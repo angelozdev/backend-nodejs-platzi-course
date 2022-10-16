@@ -56,14 +56,15 @@ export const createProduct: RequestHandler<
   Omit<Product, 'id'>
 > = async (req, res, next) => {
   try {
-    const { name, description, price, image } = req.body
+    const { name, description, price, image, categoryId } = req.body
     const createdProduct = await productServices.createOne({
       name,
       description,
       price: +price,
       image,
       createdAt: new Date(),
-      updatedAt: new Date()
+      updatedAt: new Date(),
+      categoryId
     })
 
     res.status(201).json(createdProduct)

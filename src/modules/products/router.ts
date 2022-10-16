@@ -7,11 +7,8 @@ import {
   deleteProduct
 } from './controller'
 import { validateSchema } from '../../middlewares'
-import {
-  CreateProductSchema,
-  IdSchema,
-  UpdateProductShema
-} from './utils/validators'
+import { CreateProductSchema, UpdateProductShema } from './utils/validators'
+import { IdSchema } from '../../utils/commom-validators'
 
 const router = express.Router()
 
