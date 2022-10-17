@@ -1,5 +1,5 @@
 version: '3'
-name: 'backend-express'
+name: 'backend-nodejs'
 services:
   db:
     container_name: postgres
@@ -12,4 +12,12 @@ services:
       POSTGRES_DB: $DB_NAME
     volumes:
       - ./db:/var/lib/postgresql/data
+    restart: on-failure
+  backend:
+    container_name: backend
+    build: .
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db
     restart: on-failure
