@@ -1,0 +1,36 @@
+### GET many orders
+GET http://localhost:3000/api/v1/orders
+
+### GET one order
+GET http://localhost:3000/api/v1/orders/3
+
+### GET products
+GET http://localhost:3000/api/v1/orders/3/products
+
+### CREATE order
+POST http://localhost:3000/api/v1/orders
+Content-Type: application/json
+
+{
+  "userId": 4,
+  "products": [
+    {
+      "id": 6,
+      "quantity": 5
+    },
+    {
+      "id": 2,
+      "quantity": 1
+    }
+  ]
+}
+
+### ADD products to order
+POST http://localhost:3000/api/v1/orders/3/products
+Content-Type: application/json
+
+{
+  "products": [
+
+  ]
+}
