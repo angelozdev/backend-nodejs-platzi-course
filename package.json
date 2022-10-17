@@ -7,8 +7,10 @@
     "build": "npm run clean && tsc",
     "clean": "rimraf ./dist",
     "dev": "nodemon ./src/index.ts",
-    "postinstall": "npm run prisma:generate",
+    "postinstall": "npm run prisma:generate && npm run prisma:migrate:prod",
     "prisma:generate": "prisma generate",
+    "prisma:migrate:dev": "prisma migrate dev --name init",
+    "prisma:migrate:prod": "prisma migrate deploy",
     "start": "node ./dist/src/index.js"
   },
   "author": "",
