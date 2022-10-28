@@ -2,8 +2,14 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
-const { POSTGRES_PASSWORD, POSTGRES_DB, POSTGRES_USER, NODE_ENV, PORT } =
-  process.env
+const {
+  API_KEY,
+  NODE_ENV,
+  PORT,
+  POSTGRES_DB,
+  POSTGRES_PASSWORD,
+  POSTGRES_USER
+} = process.env
 
 const EV = {
   postgres: {
@@ -12,7 +18,8 @@ const EV = {
     USER: POSTGRES_USER
   },
   NODE_ENV,
-  PORT: PORT || 3000
+  PORT: PORT || 3000,
+  API_KEY
 }
 
 export default EV

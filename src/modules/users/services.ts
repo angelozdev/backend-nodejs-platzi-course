@@ -1,6 +1,7 @@
 import { User } from '@prisma/client'
 import boom from '@hapi/boom'
 import prisma from '../../libs/prisma-client'
+import { hashPassword } from '../../utils/password'
 
 async function getById(id: number) {
   const user = await prisma.user.findUnique({
@@ -27,9 +28,11 @@ async function getByEmail(email: string) {
 async function createOne(
   userData: Omit<User, 'id' | 'createdAt' | 'updatedAt'>
 ) {
+  const hashedPassword = await hashPassword(userData.password)
   const user = await prisma.user.create({
     data: {
       ...userData,
+      password: hashedPassword,
       createdAt: new Date(),
       updatedAt: new Date()
     }
