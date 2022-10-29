@@ -1,25 +1,18 @@
-import './utils/strategies'
 import express from 'express'
-import passport from 'passport'
 
 import { NewUserSchema, UpdateUserSchema } from './utils/validators'
 import { getUser, updateUser, createUser } from './controllers'
 import { validateSchema } from '../../middlewares'
 import { IdSchema } from '../../utils/commom-validators'
-import { checkAuthorizationToken } from '../../middlewares/auth'
-import { exclude } from '../../utils/db'
-import { User } from '@prisma/client'
+import passport from 'passport'
+import { jwtStrategy } from '../auth/utils/strategies'
 
 const router = express.Router()
 
-router.get('/:id', checkAuthorizationToken, getUser)
-router.post(
-  '/login',
-  passport.authenticate('local', { session: false }),
-  (req, res) => {
-    const userWithoutPassword = exclude(req.user as User, 'password')
-    res.status(200).json(userWithoutPassword)
-  }
+router.get(
+  '/:id',
+  passport.authenticate(jwtStrategy, { session: false }),
+  getUser
 )
 router.post('/', validateSchema(NewUserSchema, 'body'), createUser)
 router.patch(

@@ -8,7 +8,8 @@ const {
   PORT,
   POSTGRES_DB,
   POSTGRES_PASSWORD,
-  POSTGRES_USER
+  POSTGRES_USER,
+  JWT_SECRET
 } = process.env
 
 const EV = {
@@ -19,7 +20,8 @@ const EV = {
   },
   NODE_ENV,
   PORT: PORT || 3000,
-  API_KEY
+  API_KEY,
+  JWT_SECRET
 }
 
 export default EV
