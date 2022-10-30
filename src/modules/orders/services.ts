@@ -1,4 +1,4 @@
-import { Order, Prisma as TPrisma, ProductToOrder } from '@prisma/client'
+import { Order, Prisma as TPrisma, ProductToOrder } from '.prisma/client'
 import prisma from '../../libs/prisma-client'
 import { IResponse, TParams } from '../../typings/product'
 

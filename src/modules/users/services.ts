@@ -1,4 +1,4 @@
-import { User } from '@prisma/client'
+import { User } from '.prisma/client'
 import boom from '@hapi/boom'
 import prisma from '../../libs/prisma-client'
 import { hashPassword } from '../../utils/password'

@@ -1,7 +1,7 @@
 import { TParams } from '../../typings/product'
 import boom from '@hapi/boom'
 import prisma from '../../libs/prisma-client'
-import { Product } from '@prisma/client'
+import { Product } from '.prisma/client'
 
 export async function getOne(id: number): Promise<Product> {
   const product = await prisma.product.findUnique({

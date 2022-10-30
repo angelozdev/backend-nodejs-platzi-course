@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker'
-import { Category, Product, Role, User } from '@prisma/client'
+import { Category, Product, Role, User } from '.prisma/client'
 import bcrypt from 'bcrypt'
 import prisma from '../src/libs/prisma-client'
 

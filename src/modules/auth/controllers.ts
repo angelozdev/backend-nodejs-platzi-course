@@ -1,4 +1,4 @@
-import { User } from '@prisma/client'
+import { User } from '.prisma/client'
 import { RequestHandler } from 'express'
 import { exclude } from '../../utils/db'
 import { signToken, verifyToken } from '../../utils/jwt'

@@ -1,7 +1,7 @@
 import { RequestHandler } from 'express'
 import boom from '@hapi/boom'
 import usersServices from './services'
-import { User } from '@prisma/client'
+import { User } from '.prisma/client'
 import { exclude } from '../../utils/db'
 import { comparePassword, hashPassword } from '../../utils/password'
 
